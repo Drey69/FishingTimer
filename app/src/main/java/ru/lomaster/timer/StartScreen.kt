@@ -95,6 +95,7 @@ fun StartScreen(model:Model = viewModel()){
         TimeButton(img = Icons.Outlined.CheckCircle) {
             Log.d("timer", "Run")
             val intent = Intent(App.context, TimerService::class.java)
+            intent.putExtra("newTime", minutes.value)
             App.context.startService(intent)
         }
 

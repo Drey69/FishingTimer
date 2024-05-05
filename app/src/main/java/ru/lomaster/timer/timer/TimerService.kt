@@ -21,8 +21,8 @@ class TimerService() : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         Log.d("timer", "onStartCommand")
-
-
+        val time = intent?.getIntExtra("newTime",5)
+        Log.d("timer", "SendedTime = $time")
         return super.onStartCommand(intent, flags, startId)
 
        // alarmManager.setExact()
