@@ -90,20 +90,29 @@ fun StartScreen(model:Model = viewModel()){
             }
         }
 
-        Divider(thickness = 6.dp)
+        Divider(
+            Modifier.padding(top = 3.dp, bottom = 10.dp),
+            thickness = 6.dp)
 
-        TimeButton(img = Icons.Outlined.CheckCircle) {
-            Log.d("timer", "Run")
-            val intent = Intent(App.context, TimerService::class.java)
-            intent.putExtra("newTime", minutes.value)
-            App.context.startService(intent)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceAround
+        )
+        {
+            TimeButton(img = Icons.Outlined.CheckCircle) {
+                Log.d("timer", "Run")
+                val intent = Intent(App.context, TimerService::class.java)
+                intent.putExtra("newTime", minutes.value)
+                App.context.startService(intent)
+            }
+
+            TimeButton(img = Icons.Outlined.Clear) {
+                Log.d("timer", "Stop")
+                val intent = Intent(App.context, TimerService::class.java)
+                App.context.stopService(intent)
+            }
         }
 
-        TimeButton(img = Icons.Outlined.Clear) {
-            Log.d("timer", "Stop")
-            val intent = Intent(App.context, TimerService::class.java)
-            App.context.stopService(intent)
-        }
 
     }
 }
@@ -120,6 +129,7 @@ fun TimeButton(img:ImageVector, onClick:()->Unit){
         Icon(img, contentDescription = "")
     }
 }
+
 
 
 
